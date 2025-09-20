@@ -10,6 +10,8 @@ import java.util.Random;
 
 public class IndecisionController {
     public IndecisionController(ChoiceData model, IndecisionGUI view) {
+        final boolean[] testing = {false};
+
         view.setAddChoiceListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -64,10 +66,30 @@ public class IndecisionController {
                     cumulativeWeight += model.getChoices().get(i).getChoiceWeight();
                     if (randomChoice <  cumulativeWeight) {
                         choiceDecided = model.getChoices().get(i).toString();
+                        model.getChoices().get(i).incrementTimesChosen();
                         break;
                     }
                 }
-                view.showError(String.format("Your should:\n %s", choiceDecided));
+                if (!testing[0]) {
+                    view.showError(String.format("Your should:\n %s", choiceDecided));
+                }
+            }
+        });
+
+        view.setTestListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                testing[0] = true;
+                for(int i = 0; i < 300; i++) {
+                    view.getButtonMakeChoice().doClick();
+                    System.out.println("Test number: " + i);
+                }
+                testing[0] = false;
+                String testResult = "";
+                for(int i = 0; i < model.getChoiceTotal(); i++) {
+                    testResult += String.format("%s: Chosen %d Times\n", model.getChoices().get(i).toString(), model.getChoices().get(i).getTimesChosen());
+                }
+                view.showError(testResult);
             }
         });
     }

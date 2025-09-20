@@ -3,6 +3,7 @@ package Models;
 public class Choice {
     private final String choiceName;
     private final int choiceWeight;
+    private int timesChosen = 0;
 
     public Choice(String inputChoice, int inputWeight) {
         this.choiceName = inputChoice;
@@ -15,5 +16,13 @@ public class Choice {
 
     public int getChoiceWeight() {
         return choiceWeight;
+    }
+
+    public int getTimesChosen() {
+        return timesChosen;
+    }
+
+    public void incrementTimesChosen() {
+        timesChosen++;
     }
 }

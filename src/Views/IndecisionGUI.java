@@ -15,6 +15,7 @@ public class IndecisionGUI extends JFrame {
     private JButton buttonRemoveChoice;
     private JLabel labelWeight;
     private JTextField inputWeight;
+    private JButton buttonTest;
 
     DefaultListModel<Choice> choiceListData;
 
@@ -34,6 +35,10 @@ public class IndecisionGUI extends JFrame {
 
     public void setRemoveChoiceListener(ActionListener listener) {
         buttonRemoveChoice.addActionListener(listener);
+    }
+
+    public void setTestListener(ActionListener listener) {
+        buttonTest.addActionListener(listener);
     }
 
     public void setMakeChoiceListener(ActionListener listener) {
@@ -71,5 +76,9 @@ public class IndecisionGUI extends JFrame {
 
     public void showError(String error) {
         JOptionPane.showMessageDialog(null, error);
+    }
+
+    public JButton getButtonMakeChoice() {
+        return buttonMakeChoice;
     }
 }

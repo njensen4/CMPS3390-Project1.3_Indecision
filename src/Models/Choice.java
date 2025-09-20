@@ -2,13 +2,18 @@ package Models;
 
 public class Choice {
     private final String choiceName;
+    private final int choiceWeight;
 
-    public Choice(String inputChoice) {
+    public Choice(String inputChoice, int inputWeight) {
         this.choiceName = inputChoice;
+        this.choiceWeight = inputWeight;
     }
 
     public String toString() {
+        return String.format("%s (%d)", choiceName, choiceWeight);
+    }
 
-        return String.format("%s", choiceName);
+    public int getChoiceWeight() {
+        return choiceWeight;
     }
 }

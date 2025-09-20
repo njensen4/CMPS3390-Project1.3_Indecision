@@ -14,17 +14,22 @@ public class IndecisionController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String enteredChoice = view.getChoice();
+                String enteredWeight = view.getWeight();
 
                 if (enteredChoice.isBlank()) {
                     view.showError("Please enter a choice.");
                     return;
                 }
 
-                Choice choice = new Choice(enteredChoice);
+                if (enteredWeight.isBlank()) {
+                    enteredWeight = "1"; // Default weight
+                }
+
+                Choice choice = new Choice(enteredChoice, Integer.parseInt(enteredWeight));
 
                 model.addChoice(choice);
                 view.addChoice(choice);
-                view.clearInput();
+                view.clearInputs();
             }
         });
 
@@ -46,9 +51,22 @@ public class IndecisionController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Random rand = new Random();
-                int choiceTotal = model.getChoiceTotal();
-                int randomChoice = rand.nextInt(choiceTotal);
-                String choiceDecided = view.getRandomizedChoice(randomChoice);
+                String choiceDecided = "";
+                int weightTotal = 0;
+                int cumulativeWeight = 0;
+
+                for(Choice choice : model.getChoices()) {
+                    weightTotal += choice.getChoiceWeight();
+                }
+                int randomChoice = rand.nextInt(weightTotal);
+
+                for(int i = 0; i < model.getChoiceTotal(); i++) {
+                    cumulativeWeight += model.getChoices().get(i).getChoiceWeight();
+                    if (randomChoice <  cumulativeWeight) {
+                        choiceDecided = model.getChoices().get(i).toString();
+                        break;
+                    }
+                }
                 view.showError(String.format("Your should:\n %s", choiceDecided));
             }
         });

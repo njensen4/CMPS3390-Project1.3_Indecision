@@ -3,7 +3,6 @@ package Views;
 import Models.Choice;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class IndecisionGUI extends JFrame {
@@ -14,6 +13,8 @@ public class IndecisionGUI extends JFrame {
     private JTextField inputChoice;
     private JButton buttonAddChoice;
     private JButton buttonRemoveChoice;
+    private JLabel labelWeight;
+    private JTextField inputWeight;
 
     DefaultListModel<Choice> choiceListData;
 
@@ -43,6 +44,10 @@ public class IndecisionGUI extends JFrame {
         return inputChoice.getText();
     }
 
+    public String getWeight() {
+        return inputWeight.getText();
+    }
+
     public Choice getSelectedChoice() {
         return listChoices.getSelectedValue();
     }
@@ -59,8 +64,9 @@ public class IndecisionGUI extends JFrame {
         choiceListData.removeElement(choice);
     }
 
-    public void clearInput() {
+    public void clearInputs() {
         inputChoice.setText("");
+        inputWeight.setText("");
     }
 
     public void showError(String error) {

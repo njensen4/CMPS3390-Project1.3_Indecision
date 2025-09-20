@@ -6,4 +6,9 @@ public class Choice {
     public Choice(String inputChoice) {
         this.choiceName = inputChoice;
     }
+
+    public String toString() {
+
+        return String.format("%s", choiceName);
+    }
 }

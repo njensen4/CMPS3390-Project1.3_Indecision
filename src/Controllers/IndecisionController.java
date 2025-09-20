@@ -21,7 +21,23 @@ public class IndecisionController {
 
                 Choice choice = new Choice(enteredChoice);
 
+                model.addChoice(choice);
+                view.addChoice(choice);
+                view.clearInput();
+            }
+        });
 
+        view.setRemoveChoiceListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Choice choice = view.getSelectedChoice();
+
+                if (choice == null) {
+                    view.showError("Please select a choice to remove.");
+                }
+
+                model.removeChoice(choice);
+                view.removeChoice(choice);
             }
         });
     }

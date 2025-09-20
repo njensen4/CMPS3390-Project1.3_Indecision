@@ -43,6 +43,18 @@ public class IndecisionGUI extends JFrame {
         return listChoices.getSelectedValue();
     }
 
+    public void addChoice(Choice choice) {
+        choiceListData.addElement(choice);
+    }
+
+    public void removeChoice(Choice choice) {
+        choiceListData.removeElement(choice);
+    }
+
+    public void clearInput() {
+        inputChoice.setText("");
+    }
+
     public void showError(String error) {
         JOptionPane.showMessageDialog(null, error);
     }

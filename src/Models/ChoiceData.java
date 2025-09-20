@@ -14,13 +14,19 @@ public class ChoiceData {
 
     public void addChoice(Choice choice) {
         choices.add(choice);
+        choiceTotal++;
     }
 
     public void removeChoice(Choice choice) {
         choices.remove(choice);
+        choiceTotal--;
     }
 
     public List<Choice> getChoices() {
         return choices;
+    }
+
+    public int getChoiceTotal() {
+        return choiceTotal;
     }
 }

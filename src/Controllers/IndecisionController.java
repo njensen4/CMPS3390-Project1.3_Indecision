@@ -6,6 +6,7 @@ import Views.IndecisionGUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 public class IndecisionController {
     public IndecisionController(ChoiceData model, IndecisionGUI view) {
@@ -38,6 +39,17 @@ public class IndecisionController {
 
                 model.removeChoice(choice);
                 view.removeChoice(choice);
+            }
+        });
+
+        view.setMakeChoiceListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Random rand = new Random();
+                int choiceTotal = model.getChoiceTotal();
+                int randomChoice = rand.nextInt(choiceTotal);
+                String choiceDecided = view.getRandomizedChoice(randomChoice);
+                view.showError(String.format("Your should:\n %s", choiceDecided));
             }
         });
     }

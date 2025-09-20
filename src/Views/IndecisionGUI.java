@@ -35,12 +35,20 @@ public class IndecisionGUI extends JFrame {
         buttonRemoveChoice.addActionListener(listener);
     }
 
+    public void setMakeChoiceListener(ActionListener listener) {
+        buttonMakeChoice.addActionListener(listener);
+    }
+
     public String getChoice() {
         return inputChoice.getText();
     }
 
     public Choice getSelectedChoice() {
         return listChoices.getSelectedValue();
+    }
+
+    public String getRandomizedChoice(int randomChoice) {
+        return listChoices.getModel().getElementAt(randomChoice).toString();
     }
 
     public void addChoice(Choice choice) {
